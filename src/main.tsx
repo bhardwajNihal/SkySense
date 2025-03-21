@@ -8,7 +8,16 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './components/Theme-provider.tsx'
 import { Layout } from './components/layout.tsx'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      staleTime : 5*60*1000,   //the time after which data will be considered absolete, and required to be refetched
+      gcTime : 5*50*1000,     // the time for which data remains cached
+      retry : false,            // retry again if fetch fails
+      refetchOnWindowFocus : false  // whether to refetch if window is changed and reopened in the browser
+    }
+  }
+})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

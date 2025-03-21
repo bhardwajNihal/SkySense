@@ -67,13 +67,13 @@ class WeatherAPI{
 
 
 // method to fetch latitudes and longitudes, given a city name
-    async getLocation(cityName:string) : Promise<geocodingResponseType[]> {
+    async getCoordinates(cityName:string) : Promise<geocodingResponseType[]> {
 
         const url = this.createUrl(`${API_CONFIGS.GEO}/direct`,{
             q : cityName,
             limit : "5"
         });
-        return this.fetchData<geocodingResponseType[]>(url)     // will return an array of city data
+        return this.fetchData<geocodingResponseType[]>(url)     // will return an array of location data
     }
 }
 

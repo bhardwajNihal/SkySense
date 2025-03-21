@@ -45,7 +45,7 @@ export function useCurrentLocation(){
         ),(error)=>{                    // also takes a callback to handle error
             let errorMessage: string;
             // There are various inbuild error handlers to the navigator method
-            if(error.PERMISSION_DENIED) errorMessage="Location Permission Denied! Please turn on the location access";
+            if(error.PERMISSION_DENIED) errorMessage="Location Permission Denied! Please turn on the location access.";
             else if(error.POSITION_UNAVAILABLE) errorMessage = "Location Info Unavailable!";
             else if(error.TIMEOUT) errorMessage = "Location Request Timed Out!";
             else errorMessage = "An unknown Error Occured!"; 
