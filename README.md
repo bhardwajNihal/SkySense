@@ -26,3 +26,6 @@
 # Functionalities 
     1. Fetch the current location of the user, and display the respective curent user data
     2. Add skeleton for the loading state
+    3. Alert in case of location access not provided
+    
+    4. Difine custom hooks to fetch data
