@@ -26,7 +26,7 @@ export const Header = () => {
                 <div
                     className={`logo text-3xl flex items-center ${(theme === 'dark') ? "text-[#2BC4D8]" : "text-[#216DC2]"}`}>
                     <FaCloudSunRain />
-                    <span className='text-lg font-semibold'>CloudMate</span>
+                    <span className='text-lg font-semibold tracking-tighter'>SkySense</span>
                 </div>
 
                 <div className={`toggle-theme w-fit text-xl cursor-pointer transition-transform duration-500

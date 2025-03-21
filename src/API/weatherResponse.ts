@@ -55,25 +55,25 @@ class WeatherAPI{
 
     
 // method to fetch city name given its latitude and longitudes
-    async getCityName({lat,lon}:coordinatesType) : Promise<geocodingResponseType> {
+    async getCityName({lat,lon}:coordinatesType) : Promise<geocodingResponseType[]> {
 
         const url = this.createUrl(`${API_CONFIGS.GEO}/reverse`,{
             lat :lat.toString(),
             lon : lon.toString(),
             limit : "1"                   // to return only 1st data, in case of overlapping cities
         })
-        return this.fetchData<geocodingResponseType>(url);
+        return this.fetchData<geocodingResponseType[]>(url);    //response will be in array format
     }
 
 
 // method to fetch latitudes and longitudes, given a city name
-    async getLocation(cityName:string) : Promise<geocodingResponseType> {
+    async getLocation(cityName:string) : Promise<geocodingResponseType[]> {
 
         const url = this.createUrl(`${API_CONFIGS.GEO}/direct`,{
             q : cityName,
             limit : "5"
         });
-        return this.fetchData<geocodingResponseType>(url)
+        return this.fetchData<geocodingResponseType[]>(url)     // will return an array of city data
     }
 }
 
