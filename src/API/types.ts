@@ -5,8 +5,8 @@ export interface coordinatesType {
   lon: number;
 }
 
+// for cityname and location query
 export interface geocodingResponseType {
-  // response from the geocoding api
   name: string;
   local_names?: Record<string, string>; // will be a list of key value pairs
   lat: number;
