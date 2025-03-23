@@ -4,7 +4,7 @@ import { coordinatesType } from "@/API/types";
 import { weatherAPI } from "@/API/weatherResponse";
 import { useQuery } from "@tanstack/react-query";
 
-
+// will be using react query
 // hook to get weather data
 export function useWeatherQuery(coords:coordinatesType|null){
 
@@ -42,7 +42,7 @@ export function useGetCitynameQuery(coords : coordinatesType | null) {
 
 
 // hook to get coordinates given a city name
-export function useGetCoordinatesQuery(cityName: string){
+export function useGetLocationData(cityName: string){
 
     return useQuery({
         queryKey : ['coordinates', cityName],

@@ -17,7 +17,7 @@ import WeatherForecastCard from '@/components/cards/weatherForecast';
 export const Dashboard = () => {
 
   const { coordinates, isLoading, error, getCurrentLocation } = useCurrentLocation();
-  
+
   const currentLocationQuery = useGetCitynameQuery(coordinates);
   const currentWeatherQuery = useWeatherQuery(coordinates);
   const weatherForecastQuery = useForeCastQuery(coordinates);
@@ -70,24 +70,24 @@ export const Dashboard = () => {
   }
 
 
-  if(!currentWeatherQuery.data || !weatherForecastQuery.data){
+  if (!currentWeatherQuery.data || !weatherForecastQuery.data) {
     return <LoadingSkeleton />
   }
 
-  if(currentLocationQuery.error || weatherForecastQuery.error){
+  if (currentLocationQuery.error || weatherForecastQuery.error) {
     return <div>
-    <Alert>
-      <IoAlertCircleOutline />
-      <AlertTitle className='mb-4'>Error!</AlertTitle>
-      <AlertDescription>
-        <p>Error Fetching Weather Data! Please Try Again!</p>
-        <Button onClick={handleRefresh} variant={"outline"} className='mt-4'>   
-          <RefreshCcw />
-          <span>Retry</span>
-        </Button>
-      </AlertDescription>
-    </Alert>
-  </div>
+      <Alert>
+        <IoAlertCircleOutline />
+        <AlertTitle className='mb-4'>Error!</AlertTitle>
+        <AlertDescription>
+          <p>Error Fetching Weather Data! Please Try Again!</p>
+          <Button onClick={handleRefresh} variant={"outline"} className='mt-4'>
+            <RefreshCcw />
+            <span>Retry</span>
+          </Button>
+        </AlertDescription>
+      </Alert>
+    </div>
   }
 
   return (
@@ -114,17 +114,19 @@ export const Dashboard = () => {
 
 
 
-     <div className='lg:flex gap-4 mb-6'>
-     <CurrentWeatherCard 
-     weatherData={currentWeatherQuery.data}
-     locationData={currentLocationQuery.data}
-     />
-     <WeatherChartCard forecastData={weatherForecastQuery.data} />
-     </div>
-      <div className='lg:flex gap-4'>
-      <WeatherDetails  weatherData={currentWeatherQuery.data}/>
-      <WeatherForecastCard/>
+      <div className='lg:flex gap-4 mb-6'>
+        <CurrentWeatherCard
+          weatherData={currentWeatherQuery.data}
+          locationData={currentLocationQuery.data}
+        />
+        <WeatherChartCard forecastData={weatherForecastQuery.data} />
       </div>
+      <div className='lg:flex gap-4'>
+        <WeatherDetails weatherData={currentWeatherQuery.data} />
+        <WeatherForecastCard forecastData={weatherForecastQuery.data} />
+      </div>
+
+      
 
     </div>
   )

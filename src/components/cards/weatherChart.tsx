@@ -1,5 +1,6 @@
 import { forecastDataType } from '@/API/types'
 import { format } from 'date-fns';
+import { useTheme } from '../Theme-provider';
 import { ResponsiveContainer, XAxis, YAxis, Line, LineChart, Tooltip } from 'recharts'
 
 
@@ -16,7 +17,7 @@ interface chartDatatype {
 const WeatherChartCard = ({ forecastData }: weatherChartProps) => {
 
     // preparing Chart data
-    const chartData: chartDatatype[] = forecastData.list.slice(0, 8).map((data) => ({
+    const chartData: chartDatatype[] = forecastData.list.slice(0, 8).map((data) => ({       // forcast data consist of list object, 1st convert it to array, then map it extract the chart data
         time: format(new Date(data.dt * 1000), "ha"),       // provide the raw date and format into time AM/PM
         temp: Math.floor(data.main.temp),
         feelsLike: Math.floor(data.main.feels_like)
@@ -24,10 +25,11 @@ const WeatherChartCard = ({ forecastData }: weatherChartProps) => {
 
     // console.log(chartData);
 
+    const {theme} = useTheme()
 
     return (
         <div
-            className={`h-80 w-full lg:w-3/5 bg-background rounded-lg overflow-hidden p-4`}
+            className={`h-80 w-full lg:w-[55%] bg-background ${theme==='dark' ? "" : "border border-gray-300" } rounded-lg p-4`}
         >
             <h2 className='h-[10%]'>Today's Temperature</h2>
             <div className="chartArea  w-full h-[90%]">

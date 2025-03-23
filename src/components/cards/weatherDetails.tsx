@@ -21,20 +21,33 @@ const WeatherDetails = ({weatherData}:weatherDetailProps) => {
         return format(new Date(timeStamp * 1000), "h:mm a")
     }
 
+    function findDirection(){
+        const deg = weatherData.wind.deg;
+
+        if(deg>=337.5 || deg<22.5) return "N";
+        else if(deg>=22.5 && deg<67.5) return "NE";
+        else if(deg>=67.5 && deg<112.5) return "E";
+        else if(deg>=112.5 && deg<157.5) return "SE";
+        else if(deg>=157.5 && deg<202.5) return "S";
+        else if(deg>=202.5 && deg<247.5) return "SW";
+        else if(deg>=247.5 && deg<292.5) return "W";
+        else return "NW";
+
+    }
+
     return (
         <div
-            className={`h-fit w-full flex flex-col gap-2 p-4  lg:w-1/2 mb-4 ${theme === 'light' ? "border border-gray-400" : ""} bg-background rounded-lg`}
-        >
+            className={`h-fit w-full flex flex-col gap-2 p-4 lg:w-1/2 mb-4 ${theme === 'light' ? "border border-gray-300" : ""} bg-background rounded-lg`}>
             <h2>Weather Details</h2>
             <div className="sm:flex gap-2">
-                <div className={`sunrise border ${theme === "dark" ? "border-gray-700" : "border-gray-400"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2 mb-2 sm:mb-0 `}>
+                <div className={`sunrise border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2 mb-2 sm:mb-0 `}>
                     <Sunrise className="text-yellow-600"/>
                     <div className="text-sm">
                         <h3>Sunrise</h3>
                         <h4 className="text-muted-foreground">{weatherData.sys && formatTime(weatherData.sys.sunrise)}</h4>
                     </div>
                 </div>
-                <div className={`sunset border ${theme === "dark" ? "border-gray-700" : "border-gray-400"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2`}>
+                <div className={`sunset border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2`}>
                 <Sunset className="text-blue-600"/>
                     <div className="text-sm">
                         <h3>Sunset</h3>
@@ -43,14 +56,14 @@ const WeatherDetails = ({weatherData}:weatherDetailProps) => {
                 </div>
             </div>
             <div className="sm:flex gap-2">
-                <div className={`wind-direction border ${theme === "dark" ? "border-gray-700" : "border-gray-400"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2 mb-2 sm:mb-0`}>
+                <div className={`wind-direction border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2 mb-2 sm:mb-0`}>
                 <Compass className="text-green-700"/>
                     <div className="text-sm">
                         <h3>Wind Direction</h3>
-                        <h4 className="text-muted-foreground">({weatherData.wind && weatherData.wind.deg}°)</h4>
+                        <h4 className="text-muted-foreground">{findDirection()}({weatherData.wind && weatherData.wind.deg}°)</h4>
                     </div>
                 </div>
-                <div className={`pressure border ${theme === "dark" ? "border-gray-700" : "border-gray-400"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2`}>
+                <div className={`pressure border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2`}>
                 <SlSpeedometer className="text-purple-700 text-2xl"/>
                     <div className="text-sm">
                         <h3>Presure</h3>

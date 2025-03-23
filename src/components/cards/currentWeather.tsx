@@ -14,14 +14,14 @@ interface currentWeatherProps {
 
 const CurrentWeatherCard = ({ weatherData, locationData }: currentWeatherProps) => {
 
-    console.log("weather : ", weatherData);
-    console.log("location : ", locationData);
+    // console.log("weather : ", weatherData);
+    // console.log("location : ", locationData);
     const {theme} = useTheme()
 
 
     return (
         <div
-            className={`h-80 w-full lg:w-2/5 mb-4 bg-background ${theme==='light'?"border border-gray-400":""} rounded-lg py-8 px-4 sm:p-6`}>
+            className={`h-80 w-full lg:w-[45%] mb-4 bg-background ${theme==='light'?"border border-gray-300":""} rounded-lg py-8 px-4 sm:p-6`}>
 
             <div className="location-info w-full h-1/4">
 
