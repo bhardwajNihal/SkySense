@@ -50,7 +50,7 @@ const WeatherForecastCard = ({ forecastData }: WeatherForecastProps) => {
     // forecasts data is in the form of object, we need to convert it to array in order to map it 
     const forecastDataArray = Object.values(forecasts).slice(1, 6);      // 1 value excluded as it consists todays data only
     const { theme } = useTheme()
-    console.log(forecastDataArray);
+    // console.log(forecastDataArray);
 
 
     return (
@@ -60,7 +60,7 @@ const WeatherForecastCard = ({ forecastData }: WeatherForecastProps) => {
             <h2>5-Day Forecast</h2>
 
             {forecastDataArray.map((data) => (
-                <div className={`card h-fit sm:flex justify-between items-center ${theme === "dark" ? "border border-gray-700" : "border border-gray-300"} text-xs sm:text-sm p-2 rounded-lg`}>
+                <div key={data.date} className={`card h-fit sm:flex justify-between items-center ${theme === "dark" ? "border border-gray-700" : "border border-gray-300"} text-xs sm:text-sm p-2 rounded-lg`}>
                     <div className="flex sm:flex-col gap-2">
                         <p>{format(new Date(data.date * 1000), "EEE, MMM d")}</p>
                         <p className="text-muted-foreground">{data.weather.description}</p>

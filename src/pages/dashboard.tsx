@@ -93,7 +93,7 @@ export const Dashboard = () => {
   return (
     <div>
 
-      <div className="favourites bg-blue-950 h-16 w-full"></div>
+      {/* <div className="favourites bg-blue-950 h-16 w-full"></div> */}
 
 
       <div className="current-location">

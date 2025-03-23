@@ -18,7 +18,7 @@ export const CityPage = () => {
   const lat = parseFloat(params.get('lat') || "0");
   const lon = parseFloat(params.get('lon') || "0");
 
-  console.log(lat, lon);
+  // console.log(lat, lon);
   
   // simply fetch the weather and forecast data given the coordinates
 
