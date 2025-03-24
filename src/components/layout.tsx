@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { Header } from './header'
+import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 export const Layout:React.FC<PropsWithChildren> = ({children}) => {       // propswithChildren is much cleaner, in case of single prop, otherwise reactNode in a separate interface when there are multiple children
   return (
@@ -8,10 +9,12 @@ export const Layout:React.FC<PropsWithChildren> = ({children}) => {       // pro
 
         <main className='min-h-screen w-full container mx-auto py-4 px-8 md:px-16'>{children}</main>
 
-        <footer>
-            <p className='text-center text-sm text-gray-500 p-4 mx-auto container backdrop:blur supports-[backdrop-filter]:bg-background/30 '>
+        <footer >
+            <div className='text-center text-sm flex items-center justify-center gap-8 text-gray-500 p-4 mx-auto container backdrop:blur supports-[backdrop-filter]:bg-background/30 '>
                 Made with hardwork & learnings by Nihal Bhardwaj
-            </p>
+                <a href='https://github.com/bhardwajNihal/SkySense' className='text-lg'><FaGithub/></a>
+            <a href='https://x.com/bhardwajnihal21' className='text-lg'><FaTwitter/></a>
+            </div>
         </footer>
     </div>
   )

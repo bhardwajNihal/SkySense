@@ -28,10 +28,10 @@ const CurrentWeatherCard = ({ weatherData, locationData }: currentWeatherProps) 
                 <h2 className='text-4xl font-semibold tracking-tighter'>{locationData && locationData[0].name}</h2>
 
                 <div className='flex'>
-                    <span className='text-muted-foreground'>{locationData && locationData[0].state && locationData[0].state} . </span>
+                    {locationData && locationData[0].state && <span className='text-muted-foreground'>{locationData[0].state}, </span>}
                     <div className='text-muted-foreground ml-1'>{locationData && locationData[0].country && locationData[0].country}</div>
                 </div>
-            </div>
+            </div> 
 
             <div className='flex w-full h-3/4'>
                 <div className="weather-info w-2/3 h-full pt-6">
