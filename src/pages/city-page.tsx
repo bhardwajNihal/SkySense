@@ -50,7 +50,7 @@ export const CityPage = () => {
 
   // check if the selected city is already added to favourites
   function isFavourite() {
-    return favourites.some(item => item.lat === lat && item.lon === lon)
+    return favourites.some((item:newFavouriteType) => item.lat === lat && item.lon === lon)
   }
 
   function handleAddToFavourites() {
@@ -68,7 +68,7 @@ export const CityPage = () => {
     // check if already added to favourites
     let filteredFavourites;
     if(isFavourite()){
-      filteredFavourites = favourites.filter(item => item.lat!==lat || item.lon!==lon);
+      filteredFavourites = favourites.filter((item:newFavouriteType) => item.lat!==lat || item.lon!==lon);
     }
     else{
       filteredFavourites = [...favourites, newFavourite]

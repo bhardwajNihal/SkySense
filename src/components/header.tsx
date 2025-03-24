@@ -1,5 +1,4 @@
 import { useTheme } from './Theme-provider';
-import React from 'react'
 import { FaCloudSunRain } from "react-icons/fa6";
 import { IoSunnyOutline } from "react-icons/io5";
 import { IoMoonOutline } from "react-icons/io5";

@@ -17,7 +17,15 @@ import { MdClear } from "react-icons/md";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
+interface favouriteItemType{
+  city: string | undefined;
+  lat: number;
+  lon: number;
+  country: string | undefined;
+  weather: string | undefined;
+  icon: string | undefined;
+  temp: number ;
+}
 
 
 export const Dashboard = () => {
@@ -35,7 +43,7 @@ export const Dashboard = () => {
   })
 
   function removeFavourites(lat: number, lon: number) {
-    const filteredFavs = favourites.filter(item => item.lat !== lat && item.lon !== lon);
+    const filteredFavs = favourites.filter((item:favouriteItemType) => item.lat !== lat && item.lon !== lon);
     setFavourites(filteredFavs);
     localStorage.setItem("favourites", JSON.stringify(filteredFavs))
   }
@@ -113,7 +121,7 @@ export const Dashboard = () => {
       {favourites && favourites.length>0 &&<div>
         <h2 className='text-lg'>Favourites</h2>
         <div className="favourites h-24 w-full p-2 flex gap-4 overflow-hidden overflow-x-auto whitespace-nowrap scrollbar-thin">
-          {favourites.map(item =>
+          {favourites.map((item:favouriteItemType) =>
             <div
               key={`${item.lat}-${item.lon}`}
               className={`${theme !== 'dark' ? "border border-gray-300" : "border border-gray-800"} bg-background h-full min-w-64 rounded-lg flex cursor-pointer relative`}
