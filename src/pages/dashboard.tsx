@@ -120,7 +120,7 @@ export const Dashboard = () => {
               onClick={() => navigate(`/city/${item.city}?lat=${item.lat}&lon=${item.lon}`)}
             >
               <div className="temp w-2/3 h-full flex flex-col justify-center items-start pl-4">
-                <h2>{item.city} . <span className='text-xs text-muted-foreground'>{item.country}</span></h2>
+                <h2>{item.city}<span className='text-xs text-muted-foreground'> . {item.country}</span></h2>
                 <div className="temp text-3xl flex gap-2 items-center">{Math.floor(item.temp)}° <span className='text-xs text-muted-foreground'>{item.weather}</span></div>
               </div>
               <div className="weatherh-full w-1/3 flex flex-col ml-[-10px] items-center justify-center text-muted-foreground">
