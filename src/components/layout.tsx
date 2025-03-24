@@ -6,7 +6,7 @@ export const Layout:React.FC<PropsWithChildren> = ({children}) => {       // pro
     <div className='bg-gradient-to-br from-background to-muted'>
         <Header/>
 
-        <main className='h-full w-full container mx-auto py-4 px-8 md:px-16'>{children}</main>
+        <main className='min-h-screen w-full container mx-auto py-4 px-8 md:px-16'>{children}</main>
 
         <footer>
             <p className='text-center text-sm text-gray-500 p-4 mx-auto container backdrop:blur supports-[backdrop-filter]:bg-background/30 '>

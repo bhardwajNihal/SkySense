@@ -12,16 +12,33 @@ import CurrentWeatherCard from '@/components/cards/currentWeather';
 import WeatherChartCard from '@/components/cards/weatherChart';
 import WeatherDetails from '@/components/cards/weatherDetails';
 import WeatherForecastCard from '@/components/cards/weatherForecast';
+import { useTheme } from '@/components/Theme-provider';
+import { MdClear } from "react-icons/md";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 export const Dashboard = () => {
 
   const { coordinates, isLoading, error, getCurrentLocation } = useCurrentLocation();
-
+  const { theme } = useTheme();
   const currentLocationQuery = useGetCitynameQuery(coordinates);
   const currentWeatherQuery = useWeatherQuery(coordinates);
   const weatherForecastQuery = useForeCastQuery(coordinates);
+  const navigate = useNavigate()
 
+  const [favourites, setFavourites] = useState(() => {
+    const favouriteList = localStorage.getItem('favourites');
+    return favouriteList ? JSON.parse(favouriteList) : []
+  })
+
+  function removeFavourites(lat: number, lon: number) {
+    const filteredFavs = favourites.filter(item => item.lat !== lat && item.lon !== lon);
+    setFavourites(filteredFavs);
+    localStorage.setItem("favourites", JSON.stringify(filteredFavs))
+  }
 
   function handleRefresh() {
     getCurrentLocation();
@@ -93,7 +110,31 @@ export const Dashboard = () => {
   return (
     <div>
 
-      {/* <div className="favourites bg-blue-950 h-16 w-full"></div> */}
+      {favourites && favourites.length>0 &&<div>
+        <h2 className='text-lg'>Favourites</h2>
+        <div className="favourites h-24 w-full p-2 flex gap-4 overflow-hidden overflow-x-auto whitespace-nowrap scrollbar-thin">
+          {favourites.map(item =>
+            <div
+              key={`${item.lat}-${item.lon}`}
+              className={`${theme !== 'dark' ? "border border-gray-300" : "border border-gray-800"} bg-background h-full min-w-64 rounded-lg flex cursor-pointer relative`}
+              onClick={() => navigate(`/city/${item.city}?lat=${item.lat}&lon=${item.lon}`)}
+            >
+              <div className="temp w-2/3 h-full flex flex-col justify-center items-start pl-4">
+                <h2>{item.city} . <span className='text-xs text-muted-foreground'>{item.country}</span></h2>
+                <div className="temp text-3xl flex gap-2 items-center">{Math.floor(item.temp)}° <span className='text-xs text-muted-foreground'>{item.weather}</span></div>
+              </div>
+              <div className="weatherh-full w-1/3 flex flex-col ml-[-10px] items-center justify-center text-muted-foreground">
+                <img src={`https://openweathermap.org/img/wn/${item.icon}@4x.png`} className='text-sm' alt="" />
+              </div>
+              <MdClear onClick={(e: React.MouseEvent) => {
+                e.stopPropagation();
+                removeFavourites(item.lat, item.lon);
+              }}
+                className='text-muted-foreground absolute top-0 right-0 text-lg m-1 cursor-pointer z-50' />
+            </div>)}
+
+        </div>
+      </div>}
 
 
       <div className="current-location">
@@ -115,10 +156,12 @@ export const Dashboard = () => {
 
 
       <div className='lg:flex gap-4 mb-6'>
-        <CurrentWeatherCard
-          weatherData={currentWeatherQuery.data}
-          locationData={currentLocationQuery.data}
-        />
+        <div className='w-full lg:w-[45%]'>
+          <CurrentWeatherCard
+            weatherData={currentWeatherQuery.data}
+            locationData={currentLocationQuery.data}
+          />
+        </div>
         <WeatherChartCard forecastData={weatherForecastQuery.data} />
       </div>
       <div className='lg:flex gap-4'>
@@ -126,7 +169,7 @@ export const Dashboard = () => {
         <WeatherForecastCard forecastData={weatherForecastQuery.data} />
       </div>
 
-      
+
 
     </div>
   )

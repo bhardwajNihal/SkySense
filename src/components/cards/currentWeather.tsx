@@ -21,14 +21,14 @@ const CurrentWeatherCard = ({ weatherData, locationData }: currentWeatherProps) 
 
     return (
         <div
-            className={`h-80 w-full lg:w-[45%] mb-4 bg-background ${theme==='light'?"border border-gray-300":""} rounded-lg py-8 px-4 sm:p-6`}>
+            className={`h-80 w-full lg:w-[100%] mb-4 bg-background ${theme==='light'?"border border-gray-300":""} rounded-lg py-8 px-4 sm:p-6`}>
 
             <div className="location-info w-full h-1/4">
 
                 <h2 className='text-4xl font-semibold tracking-tighter'>{locationData && locationData[0].name}</h2>
 
                 <div className='flex'>
-                    <span className='text-muted-foreground'>{locationData && locationData[0].state && locationData[0].state},</span>
+                    <span className='text-muted-foreground'>{locationData && locationData[0].state && locationData[0].state}</span>
                     <div className='text-muted-foreground ml-1'>{locationData && locationData[0].country && locationData[0].country}</div>
                 </div>
             </div>

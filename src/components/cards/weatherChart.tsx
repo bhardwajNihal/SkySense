@@ -64,7 +64,7 @@ const WeatherChartCard = ({ forecastData }: weatherChartProps) => {
                             dot={true}
                             strokeDasharray="5 5"
                         />
-                        <Tooltip/>
+                        <Tooltip contentStyle={{ color: "gray", borderRadius: "8px" }}/>
                     </LineChart>
                 </ResponsiveContainer>
             </div>
