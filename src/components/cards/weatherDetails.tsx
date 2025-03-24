@@ -66,7 +66,7 @@ const WeatherDetails = ({weatherData}:weatherDetailProps) => {
                 <div className={`pressure border ${theme === "dark" ? "border-gray-700" : "border-gray-300"} flex items-center justify-start gap-3 pl-3 rounded-lg h-18 w-full sm:w-1/2`}>
                 <SlSpeedometer className="text-purple-700 text-2xl"/>
                     <div className="text-sm">
-                        <h3>Presure</h3>
+                        <h3>Pressure</h3>
                         <h4 className="text-muted-foreground">({weatherData.main && weatherData.main.pressure} hpa)</h4>
                     </div>
                 </div>
