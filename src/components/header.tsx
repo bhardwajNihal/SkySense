@@ -28,9 +28,9 @@ export const Header = () => {
 
                 <div
                 onClick={()=>navigate("/")}
-                    className={`logo text-3xl flex items-center ${(theme === 'dark') ? "text-[#2BC4D8]" : "text-[#216DC2]"} cursor-pointer`}>
+                    className={`logo text-3xl md:text-4xl flex items-center ${(theme === 'dark') ? "text-[#2BC4D8]" : "text-[#216DC2]"} cursor-pointer`}>
                     <FaCloudSunRain />
-                    <span className='text-lg font-semibold tracking-tighter'>SkySense</span>
+                    <span className='text-lg md:text-xl font-bold tracking-tighter bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent'>SkySense</span>
                 </div>
 
                 {/* city search button */}

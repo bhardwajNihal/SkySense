@@ -58,7 +58,7 @@ const WeatherChartCard = ({ forecastData }: weatherChartProps) => {
                         />
                         <Line
                             type="monotone"
-                            dataKey="feels_like"
+                            dataKey="feelsLike"
                             stroke="#64748b"
                             strokeWidth={1}
                             dot={true}

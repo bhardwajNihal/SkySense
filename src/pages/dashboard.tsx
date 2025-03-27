@@ -16,6 +16,7 @@ import { useTheme } from '@/components/Theme-provider';
 import { MdClear } from "react-icons/md";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaX } from 'react-icons/fa6';
 
 interface favouriteItemType{
   city: string | undefined;
@@ -35,6 +36,7 @@ export const Dashboard = () => {
   const currentLocationQuery = useGetCitynameQuery(coordinates);
   const currentWeatherQuery = useWeatherQuery(coordinates);
   const weatherForecastQuery = useForeCastQuery(coordinates);
+  const [addFavText, setAddFavtext] = useState(true)
   const navigate = useNavigate()
 
   const [favourites, setFavourites] = useState(() => {
@@ -118,7 +120,8 @@ export const Dashboard = () => {
   return (
     <div>
 
-      {favourites && favourites.length>0 &&<div>
+      {(favourites && favourites.length>0) 
+      ? <div>
         <h2 className='text-lg'>Favourites</h2>
         <div className="favourites h-24 w-full p-2 flex gap-4 overflow-hidden overflow-x-auto whitespace-nowrap scrollbar-thin">
           {favourites.map((item:favouriteItemType) =>
@@ -138,11 +141,15 @@ export const Dashboard = () => {
                 e.stopPropagation();
                 removeFavourites(item.lat, item.lon);
               }}
-                className='text-muted-foreground absolute top-0 right-0 text-lg m-1 cursor-pointer z-50' />
+                className='text-muted-foreground absolute top-0 right-0 text-lg m-1 cursor-pointer z-40' />
             </div>)}
 
         </div>
-      </div>}
+      </div>
+    
+      : addFavText && <div className={`py-2 my-2 px-4 w-full lg:w-1/2 mx-auto rounded-lg ${(theme!=='dark'?"border border-gray-300":"border border-gray-800")} text-sm text-muted-foreground text-center flex justify-between items-center`}><span>Mark cities as favourites to show here!!!</span><span className='cursor-pointer' onClick={()=>setAddFavtext(false)}><FaX size={"10px"}/></span></div>
+    
+    }
 
 
       <div className="current-location">
